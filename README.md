@@ -29,7 +29,7 @@ This project is an enhanced web interface based on the logic from [jjCode01/js_x
 *(If you have enabled GitHub Pages)*
 1.  Go to the **Settings** tab of this repository.
 2.  Click **Pages** on the left menu.
-3.  Click the generated URL (e.g., `https://your-username.github.io/repo-name`).
+3.  Click the generated URL (e.g., `https://medosamer2022.github.io/js_xer_analyzer`).
 4.  Click **"Upload .XER File"** and select your schedule.
 
 ### Option 2: Run Locally
