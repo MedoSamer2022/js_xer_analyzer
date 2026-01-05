@@ -1,213 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xer Analyzer 2026 - Beta 1.01</title>
-    <style>
-        :root {
-            --bg-color: #1e1e1e;
-            --sidebar-color: #252526;
-            --text-color: #d4d4d4;
-            --accent-color: #007acc;
-            --header-bg: #333333;
-            --border-color: #3e3e42;
-        }
+# Xer Analyzer 2026 📊
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
+> **Beta Ver 1.01**
+> A fast, secure, and client-side web tool to analyze Primavera P6 (`.xer`) files directly in your browser.
 
-        /* Sidebar */
-        #sidebar {
-            width: 250px;
-            background-color: var(--sidebar-color);
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-        }
+![License](https://img.shields.io/badge/license-MIT-green)
+![Version](https://img.shields.io/badge/version-1.01%20Beta-blue)
+![Platform](https://img.shields.io/badge/platform-Web-orange)
 
-        h2 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: #fff;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-        }
+## 📖 Overview
 
-        .upload-btn-wrapper {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
+**Xer Analyzer 2026** is a modern enhancement of the open-source XER parsing logic. Unlike desktop applications, this runs entirely in your web browser using HTML5 and JavaScript. 
 
-        .btn {
-            border: 1px solid var(--accent-color);
-            color: white;
-            background-color: var(--accent-color);
-            padding: 8px 20px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-        }
+**Privacy First:** No data is uploaded to any server. All processing happens locally on your machine using the FileReader API.
 
-        .upload-btn-wrapper input[type=file] {
-            font-size: 100px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            cursor: pointer;
-        }
+This project is an enhanced web interface based on the logic from [jjCode01/js_xer_analyzer](https://github.com/jjCode01/js_xer_analyzer).
 
-        #table-list {
-            list-style: none;
-            padding: 0;
-            overflow-y: auto;
-            flex-grow: 1;
-        }
+## ✨ Key Features
 
-        #table-list li {
-            padding: 8px 10px;
-            cursor: pointer;
-            border-radius: 3px;
-            margin-bottom: 2px;
-            font-size: 0.9rem;
-        }
+* **Dark Mode Dashboard:** A professional IDE-like interface for long working hours.
+* **Instant Parsing:** Reads standard `.xer` files immediately without backend processing.
+* **Table Discovery:** Automatically detects all tables (e.g., `TASK`, `PROJECT`, `RSRC`) and counts the rows in each.
+* **Data Grid:** View raw data in a clean, scrollable table format.
+* **Performance:** optimized to render data without freezing the browser (includes safety limits for large datasets).
 
-        #table-list li:hover {
-            background-color: #2a2d2e;
-        }
+## 🚀 How to Use
 
-        #table-list li.active {
-            background-color: #37373d;
-            border-left: 3px solid var(--accent-color);
-        }
+### Option 1: Live Demo (GitHub Pages)
+*(If you have enabled GitHub Pages)*
+1.  Go to the **Settings** tab of this repository.
+2.  Click **Pages** on the left menu.
+3.  Click the generated URL (e.g., `https://your-username.github.io/repo-name`).
+4.  Click **"Upload .XER File"** and select your schedule.
 
-        .badge {
-            background-color: #444;
-            border-radius: 10px;
-            padding: 2px 6px;
-            font-size: 0.75rem;
-            float: right;
-        }
+### Option 2: Run Locally
+1.  Clone this repository or download the ZIP.
+2.  Locate `index.html`.
+3.  Double-click `index.html` to open it in Chrome, Edge, or Firefox.
 
-        /* Main Content */
-        #main {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
+## 🛠️ Technical Stack
 
-        header {
-            background-color: var(--header-bg);
-            padding: 10px 20px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+* **Frontend:** HTML5, CSS3 (Flexbox/Grid), Vanilla JavaScript (ES6+).
+* **Parsing Logic:** Custom Regex/Split logic to handle P6 `%T` (Table) and `%R` (Row) structures.
+* **Dependencies:** None. Zero external libraries required.
 
-        #status {
-            font-size: 0.9rem;
-            color: #888;
-        }
+## 📝 Enhancements in v1.01
+* Converted strict Node.js logic to browser-compatible JS.
+* Added CSS styling for a "Dark Theme" UI.
+* Added Sidebar navigation for easy table switching.
+* Added row counters and status indicators.
 
-        #content-area {
-            flex-grow: 1;
-            overflow: auto;
-            padding: 20px;
-        }
+## 🤝 Contributing
 
-        /* Data Tables */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
+1.  Fork the project.
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4.  Push to the branch (`git push origin feature/AmazingFeature`).
+5.  Open a Pull Request.
 
-        th, td {
-            text-align: left;
-            padding: 8px;
-            border-bottom: 1px solid var(--border-color);
-        }
+## ⚖️ License
 
-        th {
-            background-color: var(--header-bg);
-            position: sticky;
-            top: 0;
-            color: white;
-        }
+This project is open source. 
+Original Logic Credit: [jjCode01](https://github.com/jjCode01/js_xer_analyzer).
 
-        tr:hover {
-            background-color: #2a2d2e;
-        }
-
-        .welcome-msg {
-            text-align: center;
-            margin-top: 100px;
-            color: #666;
-        }
-        
-        footer {
-            text-align: center;
-            font-size: 0.8rem;
-            padding: 10px;
-            color: #555;
-            border-top: 1px solid var(--border-color);
-        }
-    </style>
-</head>
-<body>
-
-    <div id="sidebar">
-        <h2>XER Analyzer 2026</h2>
-        <div class="upload-btn-wrapper">
-            <button class="btn">Upload .XER File</button>
-            <input type="file" id="fileInput" accept=".xer" />
-        </div>
-        <div style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">DETECTED TABLES:</div>
-        <ul id="table-list">
-            </ul>
-    </div>
-
-    <div id="main">
-        <header>
-            <strong id="active-table-name">Dashboard</strong>
-            <span id="status">Waiting for file...</span>
-        </header>
-
-        <div id="content-area">
-            <div class="welcome-msg">
-                <h3>Welcome to Xer Analyzer 2026 (Beta 1.01)</h3>
-                <p>Select a Primavera P6 (.xer) file to begin analysis.</p>
-                <p>Based on jjCode01/js_xer_analyzer</p>
-            </div>
-        </div>
-        
-        <footer>
-            JS XER Analyzer | Beta Ver 1.01
-        </footer>
-    </div>
-
-    <script>
-        // Global storage for parsed data
-        let xerData = {};
-
-        document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
-
-        function handleFileSelect(event) {
-            const file =
+---
+*Made for Project Controls Professionals.*
